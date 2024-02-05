@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+# cache
+.cache
+
+# build
+build
+
+# mDNS tests and example
+components/mDNS/tests/
+components/mDNS/examples
