@@ -135,16 +135,9 @@ static void chat_server_task(void *pvParameters)
     //set hostname on the ESP32
     ESP_ERROR_CHECK(mdns_hostname_set("esp32-mdns"));
     ESP_LOGI(TAG, "mdns hostname set to: [%s]", "esp32-mdns");
-    //set instance name
-    ESP_ERROR_CHECK(mdns_instance_name_set("ChatServer"));
-    ESP_LOGI(TAG, "mdns instance name set to: [%s]", "ChatServer");
 
     //add our services
-    mdns_service_add(NULL, "_ChatServer", "_tcp", 8584, NULL, 0);
-
-    //NOTE: services must be added before their properties can be set
-    //use custom instance for the server
-    mdns_service_instance_name_set("_ChatServer", "_tcp", "ChatServer");
+    mdns_service_add("ChatServer", "_ChatServer", "_tcp", 8584, NULL, 0);
 
 	// loop and select() to see when a socket has something ready to read
     while (1) {
